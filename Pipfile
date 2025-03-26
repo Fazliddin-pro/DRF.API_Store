@@ -13,6 +13,7 @@ djoser = "*"
 djangorestframework-simplejwt = "*"
 psycopg2-binary = "*"
 pillow = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
