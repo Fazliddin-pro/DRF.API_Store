@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -187,3 +188,14 @@ EMAIL_HOST_PASSWORD = ""
 ADMINS = [
     ("Ali", "ali@mymail.com"),
 ]
+
+# Celelry settings
+CELERY_BROKER_URL = "redis://localhost:6379/1"
+broker_connection_retry_on_startup = True
+CELERY_BEAT_SCHEDULE = {
+    'notify-customers': {
+        'task': 'playground.tasks.notify_customers',
+        'schedule': 5,
+        'args': ('Hello there!',),
+    },
+}
