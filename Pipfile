@@ -11,6 +11,8 @@ drf-nested-routers = "*"
 django-filter = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
+psycopg2-binary = "*"
+pillow = "*"
 
 [dev-packages]
 

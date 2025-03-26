@@ -1,20 +1,37 @@
-# Игнорируем виртуальное окружение
-venv/
-env/
+.idea
+idea
+.DS_Store
 
-# Игнорируем файлы кэша и базы данных
-__pycache__/
-*.pyc
-*.pyo
+*.egg-info/
+.installed.cfg
+*.egg
+
+dist
 db.sqlite3
-
-# Конфиденциальные данные и настройки
 .env
-*.secret
 
-# Файлы логов
-logs/
-*.log
+venv
 
-# Файлы из VS Code
-.vscode/
+
+prod_settings.py
+.env
+local_settings.py
+
+__pycache__/
+*/__pycache__/
+*.py[cod]
+.pyc
+*.pyc
+
+!*media
+media/*
+
+log/debug.log
+
+build
+doc
+home.rst
+make.bat
+Makefile
+
+doc-dev
