@@ -1,11 +1,15 @@
+from django.core.mail import EmailMessage, BadHeaderError
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.db.models.aggregates import Max, Count
-
-from store.models import Customer, Product
-from tags.models import TaggedItem
+from templated_mail.mail import BaseEmailMessage
 
 def say_hello(request):
-    TaggedItem.objects.get_tags_for(Product, 1)
+    try:
+        message = BaseEmailMessage(
+            template_name='emails/hello.html',
+            context={'name': 'Ali'},
+        )
+        message.send(['somebody@example.com'])
+    except BadHeaderError:
+        pass
 
-    return render(request, 'hello.html', {'name': 'Ali', 'products': product})
+    return render(request, 'hello.html', {'name': 'Ali'})
