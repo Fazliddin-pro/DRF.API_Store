@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'djoser',
+    'silk',
 
     'playground',
     'store',
     'tags',
+    'likes',
     'core',
 ]
 
@@ -61,16 +63,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
+if DEBUG:
+    MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
+
 INTERNAL_IPS = [
-    "127.0.0.1",
+    '127.0.0.1',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8001",
+    'http://localhost:8001',
     'http://127.0.0.1:8001',
 ]
 
@@ -173,24 +178,24 @@ DJOSER = {
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "localhost"
-EMAIL_HOST_NAME = "ali@mymail.com"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_NAME = 'ali@mymail.com'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 ADMINS = [
-    ("Ali", "ali@mymail.com"),
+    ('Ali', 'ali@mymail.com'),
 ]
 
 # Celelry settings
-CELERY_BROKER_URL = "redis://localhost:6379/1"
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
 broker_connection_retry_on_startup = True
 CELERY_BEAT_SCHEDULE = {
     'notify-customers': {
